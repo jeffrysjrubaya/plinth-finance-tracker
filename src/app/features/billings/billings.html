@@ -1,0 +1,77 @@
+<div class="page-wrapper">
+  <header class="bills-header">
+    <div class="summary-card glass-effect">
+      <div class="summary-item">
+        <span class="label">Total Monthly Bills</span>
+        <h2 class="amount">$2,840.00</h2>
+      </div>
+      <div class="summary-item">
+        <span class="label">Remaining for March</span>
+        <h2 class="amount pending">$450.00</h2>
+      </div>
+    </div>
+    <button mat-flat-button color="primary" class="add-bill-btn">
+      <mat-icon>add_card</mat-icon>
+      <span>Add Recurring</span>
+    </button>
+  </header>
+
+  <div class="bills-layout">
+    <mat-card class="bills-list-card">
+      <mat-card-header>
+        <mat-card-title>Upcoming Shared Bills</mat-card-title>
+      </mat-card-header>
+
+      <mat-selection-list [multiple]="false">
+        <mat-list-item *ngFor="let bill of upcomingBills">
+          <div matListItemIcon class="date-badge" [class.overdue]="bill.isOverdue">
+            <span class="month">{{ bill.dueDate | date:'MMM' }}</span>
+            <span class="day">{{ bill.dueDate | date:'dd' }}</span>
+          </div>
+          
+          <div matListItemTitle class="bill-title">
+            <span class="name">{{ bill.name }}</span>
+            <span class="price">{{ bill.amount | currency }}</span>
+          </div>
+          
+          <div matListItemLine class="bill-meta">
+            <mat-icon *ngIf="bill.isAutoPay" class="auto-icon" title="Auto-pay enabled">sync_saved_locally</mat-icon>
+            <span class="category">{{ bill.category }}</span>
+            <span class="accountability-note">• Paid by {{ bill.payer }}</span>
+          </div>
+          
+          <div matListItemMeta>
+            <button mat-icon-button [matMenuTriggerFor]="billMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-selection-list>
+    </mat-card>
+
+    <div class="side-panel">
+      <mat-card class="analytics-card">
+        <h3>Shared Subscriptions</h3>
+        <div class="sub-item" *ngFor="let sub of subscriptions">
+          <img [src]="sub.logo" class="sub-logo-sq">
+          <div class="sub-details">
+            <span class="sub-name">{{ sub.name }}</span>
+            <span class="sub-cost">{{ sub.cost | currency }}/mo</span>
+          </div>
+          <mat-slide-toggle [checked]="sub.active" color="primary"></mat-slide-toggle>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="sub-total">
+          <span>Monthly Subscription Total:</span>
+          <strong>$84.90</strong>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<mat-menu #billMenu="matMenu" class="accord-menu">
+  <button mat-menu-item><mat-icon>check_circle</mat-icon>Mark as Paid</button>
+  <button mat-menu-item><mat-icon>edit</mat-icon>Edit Amount</button>
+  <button mat-menu-item color="warn"><mat-icon>delete</mat-icon>Remove</button>
+</mat-menu>

@@ -1,0 +1,107 @@
+.insights-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  
+  .insight-pill {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+
+    mat-icon { font-size: 32px; width: 32px; height: 32px; }
+    strong { display: block; font-size: 1.1rem; color: #1e293b; }
+    small { color: #64748b; font-weight: 600; }
+  }
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  border-radius: 24px;
+  padding: 12px;
+  
+  .chart-placeholder {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.donut-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .donut-labels {
+    width: 100%;
+    margin-top: 20px;
+    .label-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      .dot { width: 10px; height: 10px; border-radius: 50%; }
+      .dot.user { background: #6366f1; }
+      .dot.partner { background: #a5b4fc; }
+    }
+  }
+}
+
+.trend-up { color: #ef4444; font-weight: 700; display: flex; align-items: center; mat-icon { font-size: 16px; } }
+.trend-down { color: #22c55e; font-weight: 700; display: flex; align-items: center; mat-icon { font-size: 16px; } }
+
+.analysis-table-card {
+  border-radius: 24px;
+  padding: 8px;
+  mat-progress-bar { height: 8px; border-radius: 4px; }
+}
+
+.chart-wrapper {
+  height: 300px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.donut-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 20px 0;
+
+  .canvas-container {
+    height: 220px;
+    width: 220px;
+    position: relative;
+  }
+}
+
+.donut-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .total { font-size: 1.4rem; font-weight: 800; color: #1e293b; }
+  .label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; }
+}

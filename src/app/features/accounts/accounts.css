@@ -1,0 +1,90 @@
+.accounts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  .total-assets {
+    .label { color: #64748b; font-weight: 600; font-size: 0.9rem; }
+    h1 { font-size: 2.5rem; font-weight: 800; margin: 4px 0; letter-spacing: -1px; }
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: #22c55e;
+      background: #f0fdf4;
+      padding: 4px 10px;
+      border-radius: 20px;
+      mat-icon { font-size: 14px; width: 14px; height: 14px; }
+    }
+  }
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.account-card {
+  border-radius: 24px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+  }
+
+  .bank-logo-sq {
+    background: #f1f5f9;
+    color: #6366f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+  }
+}
+
+.balance-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 16px;
+  h2 { font-size: 1.8rem; font-weight: 700; margin: 0; }
+  .negative { color: #ef4444; }
+}
+
+.ownership-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  &.joint { background: #e0e7ff; color: #4338ca; }
+  &.personal { background: #f1f5f9; color: #475569; }
+}
+
+/* Accountability Contribution Bar */
+.contribution-section {
+  margin-top: 20px;
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+}
+
+.split-progress {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #f1f5f9;
+  .segment.user { background: #6366f1; }
+  .segment.partner { background: #a5b4fc; }
+}

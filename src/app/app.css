@@ -1,0 +1,143 @@
+.app-container {
+  height: 100vh;
+  background-color: #f8fafc;
+}
+
+.sidebar-nav {
+  width: 260px;
+  background: white;
+  border-right: 1px solid #edf2f7;
+
+  /* The container that holds everything */
+  .sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .top-section {
+        flex: 1;
+    }
+
+    .bottom-section {
+      padding: 12px 0;
+      background-color: #ffffff;
+
+      mat-divider {
+        margin: 0 24px 16px;
+      }
+
+      .partner-card {
+        margin: 0 16px 8px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: 16px;
+
+        .partner-avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 10px;
+        }
+        .name {
+          font-size: 13px;
+          font-weight: 600;
+          display: block;
+        }
+        .status {
+          font-size: 11px;
+          color: #22c55e;
+        }
+      }
+    }
+  }
+}
+
+/* Specific styling for the Logout item */
+.logout-item {
+  margin: 4px 16px !important;
+  border-radius: 12px !important;
+  color: #e53e3e !important;
+
+  &:hover {
+    background-color: #fff5f5 !important;
+  }
+}
+
+.nav-group-label {
+  padding: 24px 24px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 1.2px;
+}
+
+/* Squircle Active State */
+.active-link {
+  background-color: #f5f7ff !important;
+  color: #6366f1 !important;
+  font-weight: 600;
+  border-right: 4px solid #6366f1;
+  mat-icon {
+    color: #6366f1;
+  }
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 20px;
+  border-top: 1px solid #f1f5f9;
+
+  .partner-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 16px;
+
+    .partner-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    .partner-info {
+      display: flex;
+      flex-direction: column;
+      .name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .status {
+        font-size: 11px;
+        &.online {
+          color: #22c55e;
+        }
+      }
+    }
+  }
+}
+
+.top-app-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 64px;
+  background: white;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .sidebar-nav {
+    width: 280px;
+  }
+  .mobile-menu-btn {
+    display: inline-block;
+  }
+}

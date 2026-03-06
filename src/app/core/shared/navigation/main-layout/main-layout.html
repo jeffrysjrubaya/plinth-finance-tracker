@@ -1,0 +1,67 @@
+<mat-sidenav-container class="full-height-container">
+  <mat-sidenav #sidenav mode="side" opened="false" class="main-sidebar">
+    <button mat-icon-button (click)="sidenav.close()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <div class="sidebar-flex-container">
+      <div class="nav-top-content">
+        <div class="brand-logo">
+          <span>Plinth</span>
+        </div>
+
+        <mat-nav-list>
+          <div class="nav-group-label">MAIN MENU</div>
+          <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>dashboard</mat-icon>
+            <span matListItemTitle>Dashboard</span>
+          </a>
+          <a mat-list-item routerLink="/transactions" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>account_balance_wallet</mat-icon>
+            <span matListItemTitle>Transactions</span>
+          </a>
+          <a mat-list-item routerLink="/accounts" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>account_balance</mat-icon>
+            <span matListItemTitle>Accounts</span>
+          </a>
+          <a mat-list-item routerLink="/budgets" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>track_changes</mat-icon>
+            <span matListItemTitle>Budget & Goals</span>
+          </a>
+          <a mat-list-item routerLink="/billings" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>payment</mat-icon>
+            <span matListItemTitle>Bills & Recurring Payments</span>
+          </a>
+
+          <div class="nav-group-label">GENERAL</div>
+          <a mat-list-item routerLink="/reports" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>table_chart</mat-icon>
+            <span matListItemTitle>Reports & Analytics</span>
+          </a>
+          <a mat-list-item routerLink="/settings" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>settings</mat-icon>
+            <span matListItemTitle>Settings</span>
+          </a>
+        </mat-nav-list>
+      </div>
+
+      <div class="nav-bottom-content">
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+          <a mat-list-item (click)="onLogout()" class="sign-out-item">
+            <mat-icon matListItemIcon color="warn">logout</mat-icon>
+            <span matListItemTitle>Sign out</span>
+          </a>
+        </mat-nav-list>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-breadcrumb></app-breadcrumb>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

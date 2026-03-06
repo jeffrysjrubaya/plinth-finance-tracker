@@ -1,0 +1,63 @@
+<div class="summary-grid">
+  <mat-card class="stat-card balance">
+    <mat-card-header>
+      <div class="icon-wrapper">
+        <mat-icon>account_balance_wallet</mat-icon>
+      </div>
+      <div class="card-titles">
+        <mat-card-subtitle>Total Balance</mat-card-subtitle>
+        <mat-card-title>$32,390.00</mat-card-title>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="stat-footer">
+        <span class="trend positive">+7.4%</span>
+        <span class="label">vs last month</span>
+      </div>
+      <div class="partner-split">
+        <div class="split-bar" [style.width.%]="55" matTooltip="Sarah's share: 55%"></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="stat-card spending">
+    <mat-card-header>
+      <div class="icon-wrapper">
+        <mat-icon>shopping_cart</mat-icon>
+      </div>
+      <div class="card-titles">
+        <mat-card-subtitle>Shared Spending</mat-card-subtitle>
+        <mat-card-title>$2,460.10</mat-card-title>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="stat-footer">
+        <span class="trend warning">82%</span>
+        <span class="label">of joint budget</span>
+      </div>
+      <mat-progress-bar mode="determinate" value="82" color="warn"></mat-progress-bar>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="stat-card investment">
+    <mat-card-header>
+      <div class="icon-wrapper">
+        <mat-icon>auto_graph</mat-icon>
+      </div>
+      <div class="card-titles">
+        <mat-card-subtitle>Investments</mat-card-subtitle>
+        <mat-card-title>$21,872.00</mat-card-title>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="stat-footer">
+        <span class="trend positive">+$420</span>
+        <span class="label">yield today</span>
+      </div>
+      <div class="chip-container">
+        <span class="crypto-chip">Crypto: 12%</span>
+        <span class="stock-chip">Stocks: 88%</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

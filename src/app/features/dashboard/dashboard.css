@@ -1,0 +1,90 @@
+.accord-dashboard {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    h1 { margin: 0; font-weight: 800; letter-spacing: -1px; }
+    .brand-icon { color: #6366f1; }
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 24px;
+}
+
+.glass-card {
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+.contribution-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 15px;
+  background: #eee;
+  
+  .segment.partner { background: #6366f1; }
+  .segment.user { background: #a5b4fc; }
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  padding: 0 24px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main-card, .side-card {
+  border-radius: 24px;
+  padding: 20px;
+}
+
+.rounded-avatar {
+  border-radius: 12px !important;
+}
+
+.activity-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.activity-node {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  
+  .node-icon {
+    padding: 8px;
+    border-radius: 10px;
+    &.alert { background: #fee2e2; color: #ef4444; }
+    &.info { background: #e0e7ff; color: #6366f1; }
+  }
+}
+
+.negative { color: #e11d48; font-weight: 600; }
+
+

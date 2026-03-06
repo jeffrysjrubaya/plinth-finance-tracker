@@ -1,0 +1,61 @@
+<app-comparison-card></app-comparison-card>
+
+<app-stat-card></app-stat-card>
+
+<div class="dashboard-content">
+  <section class="stats-grid">
+    <mat-card class="glass-card primary-stat">
+      <mat-card-subtitle>Joint Balance</mat-card-subtitle>
+      <mat-card-title>$58,230.00</mat-card-title>
+      <div class="contribution-bar">
+        <div class="segment partner" style="width: 60%" matTooltip="Partner: 60%"></div>
+        <div class="segment user" style="width: 40%" matTooltip="You: 40%"></div>
+      </div>
+    </mat-card>
+
+    <mat-card class="glass-card">
+      <mat-card-subtitle>Monthly Spending</mat-card-subtitle>
+      <mat-card-title>$3,420.15</mat-card-title>
+      <mat-progress-bar mode="determinate" value="68" color="accent"></mat-progress-bar>
+      <small>68% of joint budget used</small>
+    </mat-card>
+  </section>
+
+  <div class="layout-grid">
+    <mat-card class="main-card">
+      <div class="card-header">
+        <h2>Shared Activity</h2>
+        <button mat-stroked-button color="primary">+ Add Transaction</button>
+        <button mat-stroked-button color="primary">+ Add Bill</button>
+      </div>
+
+      <mat-list>
+        <mat-list-item *ngFor="let item of transactions">
+          <mat-icon matListItemIcon>{{ item.avatar }}</mat-icon>
+          <span matListItemTitle>{{ item.desc }}</span>
+          <span matListItemLine>{{ item.date }} • {{ item.category }}</span>
+          <span matListItemMeta [class.negative]="item.amount < 0">
+            {{ item.amount | currency }}
+          </span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+
+    <mat-card class="side-card">
+      <h2>Accountability Log</h2>
+      <div class="activity-timeline">
+        <div class="activity-node" *ngFor="let log of partnerLogs">
+          <div class="node-icon" [ngClass]="log.type">
+            <mat-icon>{{ log.icon }}</mat-icon>
+          </div>
+          <div class="node-content">
+            <p>
+              <strong>{{ log.user }}</strong> {{ log.action }}
+            </p>
+            <small>{{ log.time }}</small>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

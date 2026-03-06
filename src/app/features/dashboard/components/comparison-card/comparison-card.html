@@ -1,0 +1,40 @@
+<mat-card class="comparison-card">
+  <mat-card-header>
+    <mat-card-title>Financial Health</mat-card-title>
+    <mat-card-subtitle>Joint Asset vs. Liability Ratio</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="comparison-values">
+      <div class="value-group assets">
+        <span class="label">Total Assets</span>
+        <h2 class="amount">$64,250.00</h2>
+        <span class="trend up"><mat-icon>trending_up</mat-icon> +2.4%</span>
+      </div>
+
+      <div class="divider-vertical"></div>
+
+      <div class="value-group liabilities">
+        <span class="label">Total Liabilities</span>
+        <h2 class="amount">$18,400.00</h2>
+        <span class="trend down"><mat-icon>trending_down</mat-icon> -1.1%</span>
+      </div>
+    </div>
+
+    <div class="ratio-container">
+      <div class="ratio-labels">
+        <span>Equity: 72%</span>
+        <span>Debt: 28%</span>
+      </div>
+      <div class="multi-progress">
+        <div class="progress-segment asset-fill" [style.width.%]="72"></div>
+        <div class="progress-segment liability-fill" [style.width.%]="28"></div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <mat-icon color="primary">auto_awesome</mat-icon>
+      <p>Together, you’ve reduced shared debt by <strong>$1,200</strong> this month. High five!</p>
+    </div>
+  </mat-card-content>
+</mat-card>

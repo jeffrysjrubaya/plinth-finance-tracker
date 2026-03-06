@@ -1,0 +1,60 @@
+<div class="page-wrapper">
+  <header class="accounts-header">
+    <div class="total-assets">
+      <span class="label">Total Joint Assets</span>
+      <h1>$142,500.00</h1>
+      <span class="status-chip">
+        <mat-icon>verified</mat-icon> Synced 2m ago
+      </span>
+    </div>
+    <button mat-flat-button color="primary">
+      <mat-icon>add</mat-icon> Link New Account
+    </button>
+  </header>
+
+  <div class="accounts-grid">
+    <mat-card class="account-card" *ngFor="let acc of accounts">
+      <mat-card-header>
+        <div mat-card-avatar class="bank-logo-sq">
+          <mat-icon>{{ acc.icon }}</mat-icon>
+        </div>
+        <mat-card-title>{{ acc.name }}</mat-card-title>
+        <mat-card-subtitle>{{ acc.type }} • ****{{ acc.lastFour }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="balance-view">
+          <h2 [class.negative]="acc.balance < 0">{{ acc.balance | currency }}</h2>
+          <span class="ownership-tag" [ngClass]="acc.ownership.toLowerCase()">
+            {{ acc.ownership }}
+          </span>
+        </div>
+
+        <div class="contribution-section" *ngIf="acc.ownership === 'Joint'">
+          <div class="progress-labels">
+            <small>You: {{ acc.userPercent }}%</small>
+            <small>Sarah: {{ acc.partnerPercent }}%</small>
+          </div>
+          <div class="split-progress">
+            <div class="segment user" [style.width.%]="acc.userPercent"></div>
+            <div class="segment partner" [style.width.%]="acc.partnerPercent"></div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-button color="primary">Manage</button>
+        <button mat-icon-button [matMenuTriggerFor]="accMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<mat-menu #accMenu="matMenu" class="accord-menu">
+  <button mat-menu-item><mat-icon>history</mat-icon>View History</button>
+  <button mat-menu-item><mat-icon>edit</mat-icon>Rename Account</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item color="warn"><mat-icon>link_off</mat-icon>Unlink</button>
+</mat-menu>

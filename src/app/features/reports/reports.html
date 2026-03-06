@@ -1,0 +1,94 @@
+<div class="page-wrapper">
+  <div class="insights-row">
+    <mat-card class="insight-pill">
+      <mat-icon color="primary">insights</mat-icon>
+      <div class="text">
+        <small>Highest Spending Category</small>
+        <strong>Dining Out ($840)</strong>
+      </div>
+    </mat-card>
+    <mat-card class="insight-pill">
+      <mat-icon color="accent">savings</mat-icon>
+      <div class="text">
+        <small>Savings Rate</small>
+        <strong>22.5% of Income</strong>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="analytics-grid">
+    <mat-card class="chart-card large">
+      <mat-card-header>
+        <mat-card-title>Cash Flow Trends</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-wrapper">
+          <canvas baseChart [data]="lineChartData" [options]="lineChartOptions" [type]="'line'">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card small">
+      <mat-card-header>
+        <mat-card-title>Contribution Split</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="donut-wrapper">
+        <div class="canvas-container">
+          <canvas
+            baseChart
+            [data]="doughnutChartData"
+            [options]="doughnutChartOptions"
+            [type]="'doughnut'"
+          >
+          </canvas>
+          <div class="donut-center-text">
+            <span class="total">$4,200</span>
+            <span class="label">Total March</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="analysis-table-card">
+    <mat-card-header>
+      <mat-card-title>Category Efficiency</mat-card-title>
+    </mat-card-header>
+    <table mat-table [dataSource]="categoryEfficiency">
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let c">{{ c.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="trend">
+        <th mat-header-cell *matHeaderCellDef>Trend</th>
+        <td mat-cell *matCellDef="let c">
+          <span [class]="c.isUp ? 'trend-up' : 'trend-down'">
+            {{ c.change }}% <mat-icon>{{ c.isUp ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Health</th>
+        <td mat-cell *matCellDef="let c">
+          <mat-progress-bar
+            mode="determinate"
+            [value]="c.health"
+            [color]="c.health > 80 ? 'warn' : 'primary'"
+          ></mat-progress-bar>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['category', 'trend', 'status']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['category', 'trend', 'status']"></tr>
+    </table>
+  </mat-card>
+</div>
+
+<mat-menu #timeMenu="matMenu">
+  <button mat-menu-item>Last 30 Days</button>
+  <button mat-menu-item>Last 6 Months</button>
+  <button mat-menu-item>Year to Date</button>
+</mat-menu>

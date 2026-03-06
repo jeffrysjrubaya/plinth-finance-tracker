@@ -1,0 +1,42 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+.register-card {
+  max-width: 450px;
+  width: 100%;
+  padding: 15px;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.terms-section {
+  margin: 15px 0;
+}
+
+mat-card-header {
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  
+  a {
+    color: #3f51b5;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover { text-decoration: underline; }
+  }
+}

@@ -1,0 +1,62 @@
+<div class="page-wrapper">
+  <section class="goals-section">
+    <div class="section-header">
+      <h2>Joint Savings Goals</h2>
+      <button mat-stroked-button color="primary">New Goal</button>
+    </div>
+
+    <div class="goals-grid">
+      <mat-card class="goal-card" *ngFor="let goal of savingsGoals">
+        <mat-card-content>
+          <div class="goal-info">
+            <div class="goal-icon" [style.background-color]="goal.color + '22'" [style.color]="goal.color">
+              <mat-icon>{{ goal.icon }}</mat-icon>
+            </div>
+            <div class="goal-text">
+              <h3>{{ goal.name }}</h3>
+              <p>Target: {{ goal.target | currency }}</p>
+            </div>
+          </div>
+          
+          <div class="progress-container">
+            <div class="progress-labels">
+              <span>{{ goal.current | currency }}</span>
+              <span>{{ (goal.current / goal.target) | percent }}</span>
+            </div>
+            <mat-progress-bar mode="determinate" [value]="(goal.current / goal.target) * 100"></mat-progress-bar>
+          </div>
+          
+          <div class="accountability-hint">
+            <small>Sarah added <strong>$200</strong> yesterday</small>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <section class="budget-section">
+    <mat-card class="budget-table-card">
+      <mat-card-header>
+        <mat-card-title>Monthly Joint Budget</mat-card-title>
+        <mat-card-subtitle>March 2026</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-list>
+        <mat-list-item *ngFor="let budget of monthlyBudgets">
+          <mat-icon matListItemIcon [style.color]="budget.color">{{ budget.icon }}</mat-icon>
+          <div matListItemTitle class="budget-title">
+            <span>{{ budget.category }}</span>
+            <span class="budget-math">{{ budget.spent | currency }} / {{ budget.limit | currency }}</span>
+          </div>
+          <div matListItemLine>
+            <mat-progress-bar 
+              mode="determinate" 
+              [value]="(budget.spent / budget.limit) * 100"
+              [color]="(budget.spent > budget.limit) ? 'warn' : 'primary'">
+            </mat-progress-bar>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </section>
+</div>

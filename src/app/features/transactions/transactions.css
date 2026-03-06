@@ -1,0 +1,103 @@
+.table-container {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+.accord-table {
+  width: 100%;
+  
+  .mat-mdc-header-cell {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 16px;
+  }
+
+  .mat-mdc-cell {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+}
+
+/* Partner Avatar Stack */
+.partner-cell {
+  position: relative;
+  width: 40px;
+  
+  .avatar-sq {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .sub-icon {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
+    background: #6366f1;
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+  }
+}
+
+/* Text Formatting */
+.details-cell {
+  display: flex;
+  flex-direction: column;
+  .main-text { font-weight: 600; color: #1e293b; }
+  .sub-text { font-size: 12px; color: #94a3b8; }
+}
+
+.amount-text { font-weight: 800; font-size: 15px; }
+.negative { color: #ef4444; }
+
+/* Accountability Badges */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  
+  &.synced { background: #f0fdf4; color: #166534; }
+  &.flagged { background: #fff1f2; color: #be123c; }
+  &.pending { background: #fefce8; color: #854d0e; }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .mat-column-status, .mat-column-actions {
+    display: none;
+  }
+}
+
+/* Add this to your styles.scss or the component scss */
+.accord-action-menu {
+  border-radius: 16px !important;
+  margin-top: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+
+  .mat-mdc-menu-item {
+    font-size: 14px;
+    font-weight: 500;
+    
+    mat-icon {
+      margin-right: 12px;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
