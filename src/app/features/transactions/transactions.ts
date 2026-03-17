@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AddTransactions } from './dialog/add-transactions/add-transactions';
+import { MatDialog } from '@angular/material/dialog';
+import { TransactionsService } from './services/transactions';
 
 @Component({
   selector: 'app-transactions',
@@ -22,34 +25,45 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatChipsModule,
     MatTooltipModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   templateUrl: './transactions.html',
   styleUrl: './transactions.css',
 })
-export class Transactions {
-  displayedColumns: string[] = ['partner', 'details', 'amount', 'status', 'actions'];
+export class Transactions implements OnInit {
+  dialog = inject(MatDialog);
 
-  dataSource = [
-    {
-      partnerName: 'Sarah',
-      avatar: 'assets/sarah.jpg',
-      categoryIcon: 'shopping_cart',
-      description: 'Whole Foods Market',
-      date: new Date(),
-      category: 'Groceries',
-      amount: -142.50,
-      status: 'Flagged'
-    },
-    {
-      partnerName: 'You',
-      avatar: 'assets/me.jpg',
-      categoryIcon: 'electric_bolt',
-      description: 'Utility Bill - March',
-      date: new Date(),
-      category: 'Bills',
-      amount: -85.00,
-      status: 'Synced'
-    }
-  ];
+  service = inject(TransactionsService);
+
+  // Using a Signal for the data (modern approach)
+  transactions = signal<any>([]);
+
+  ngOnInit(): void {
+    this.service.getTransactions().subscribe((result : any[]) => {
+      console.log(result);
+      this.transactions.set(result);
+    });
+  }
+
+  // Define the columns to match the matColumnDef names in HTML
+  displayedColumns: string[] = ['date', 'description', 'type', 'account', 'amount', 'status', 'actions'];
+
+  edit(row: any) {}
+
+  delete(row: any) {}
+
+  openAddTransactionDialog() {
+    const dialogRef = this.dialog.open(AddTransactions, {
+      width: '500px',
+      disableClose: true,
+      data: { mode: 'create' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Call your service to POST the new transaction
+        console.log('New Transaction:', result);
+      }
+    });
+  }
 }
