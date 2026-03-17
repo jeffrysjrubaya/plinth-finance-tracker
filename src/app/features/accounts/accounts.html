@@ -1,54 +1,81 @@
 <div class="page-wrapper">
   <header class="accounts-header">
-    <div class="total-assets">
-      <span class="label">Total Joint Assets</span>
-      <h1>$142,500.00</h1>
-      <span class="status-chip">
-        <mat-icon>verified</mat-icon> Synced 2m ago
-      </span>
+    <div class="summary-container">
+      <div class="total-assets">
+        <span class="label">Total Assets</span>
+        <div class="amount-wrapper">
+          <h1 class="total-amount">{{ totalAssets | currency: 'Php ' }}</h1>
+          <br />
+          <span class="trend up"> <mat-icon>trending_up</mat-icon> 2.4% </span>
+        </div>
+      </div>
+
+      <div class="sync-info">
+        <mat-icon class="sync-icon" [class.rotating]="isSyncing">sync</mat-icon>
+        <span>Last updated: {{ lastSynced | date: 'shortTime' }}</span>
+        <button mat-icon-button (click)="refreshData()" matTooltip="Sync Now">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
     </div>
-    <button mat-flat-button color="primary">
+
+    <mat-progress-bar
+      *ngIf="isSyncing"
+      mode="indeterminate"
+      class="sync-progress"
+    ></mat-progress-bar>
+
+    <button mat-flat-button color="primary" (click)="openAddAccountDialog()">
       <mat-icon>add</mat-icon> Link New Account
     </button>
   </header>
 
+  <div class="filter-toolbar">
+    <mat-button-toggle-group name="accountFilter" aria-label="Account Filter" [value]="filterType()" (change)="updateFilter($event.value)">
+      <mat-button-toggle value="all">All Accounts</mat-button-toggle>
+      @for (item of categories; track $index) {
+        <mat-button-toggle [value]="item">{{item}}</mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </div>  
+
   <div class="accounts-grid">
-    <mat-card class="account-card" *ngFor="let acc of accounts">
-      <mat-card-header>
-        <div mat-card-avatar class="bank-logo-sq">
-          <mat-icon>{{ acc.icon }}</mat-icon>
-        </div>
-        <mat-card-title>{{ acc.name }}</mat-card-title>
-        <mat-card-subtitle>{{ acc.type }} • ****{{ acc.lastFour }}</mat-card-subtitle>
-      </mat-card-header>
+    <div *ngIf="isLoading" class="loading-shade">
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="40">
+      </mat-progress-spinner>
+      <p>Updating balance...</p>
+    </div>
 
-      <mat-card-content>
-        <div class="balance-view">
-          <h2 [class.negative]="acc.balance < 0">{{ acc.balance | currency }}</h2>
-          <span class="ownership-tag" [ngClass]="acc.ownership.toLowerCase()">
-            {{ acc.ownership }}
-          </span>
-        </div>
-
-        <div class="contribution-section" *ngIf="acc.ownership === 'Joint'">
-          <div class="progress-labels">
-            <small>You: {{ acc.userPercent }}%</small>
-            <small>Sarah: {{ acc.partnerPercent }}%</small>
+    <ng-container *ngIf="!isLoading">
+      <mat-card class="account-card-v2" *ngFor="let acc of filteredAccounts()">
+        <mat-card-header>
+          <div mat-card-avatar class="account-icon">
+            <mat-icon color="primary">account_balance</mat-icon>
           </div>
-          <div class="split-progress">
-            <div class="segment user" [style.width.%]="acc.userPercent"></div>
-            <div class="segment partner" [style.width.%]="acc.partnerPercent"></div>
+          <mat-card-title>{{ acc.accountName }}</mat-card-title>
+          <mat-card-subtitle>**** 8842</mat-card-subtitle>
+          <div class="account-type-tag">
+            <mat-chip-set>
+              <mat-chip class="type-chip">{{ acc.accountCategory.accountCategoryName }}</mat-chip>
+            </mat-chip-set>
           </div>
-        </div>
-      </mat-card-content>
+        </mat-card-header>
 
-      <mat-card-actions align="end">
-        <button mat-button color="primary">Manage</button>
-        <button mat-icon-button [matMenuTriggerFor]="accMenu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
+        <mat-card-content>
+          <div class="balance-container">
+            <span class="label">Current Balance</span>
+            <h2 class="balance-amount">{{ acc.amount | currency }}</h2>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-button color="primary" (click)="openUpdateAccountDialog(acc)">
+            VIEW DETAILS
+          </button>
+          <button mat-stroked-button color="accent">TRANSFER</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
   </div>
 </div>
 
